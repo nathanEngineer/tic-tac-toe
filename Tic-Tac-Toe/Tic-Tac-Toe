@@ -1,0 +1,191 @@
+#include <iostream>
+#include <string>
+#include <stdlib.h>
+
+using namespace std;
+
+char numberMap[3][3] = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+char player1 = 'X';
+int value;
+
+void Map()
+{
+    cout << "Tic Tac Toe" << endl;
+    for (int i = 0;i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << numberMap[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+void input(int input)
+{
+    cout << "Enter the number you want field:";
+    cin >> input;
+
+    if(input == 1)
+    {
+        numberMap[0][0] = player1;
+    }
+    else if(input == 2)
+    {
+        numberMap[0][1] = player1;
+    }
+    else if(input == 3)
+    {
+        numberMap[0][2] = player1;
+    }
+    else if(input == 4)
+    {
+        numberMap[1][0] = player1;
+    }
+    else if(input == 5)
+    {
+        numberMap[1][1] = player1;
+    }
+    else if(input == 6)
+    {
+        numberMap[1][2] = player1;
+    }
+    else if(input == 7)
+    {
+        numberMap[2][0] = player1;
+    }
+    else if(input == 8)
+    {
+        numberMap[2][1] = player1;
+    }
+    else if(input == 9)
+    {
+        numberMap[2][2] = player1;
+    }
+    else
+    {
+        cout << "Enter correct value" << endl;
+        cin >> input;
+    }
+}
+void playerChange()
+{
+    if (player1 == 'X')
+    {
+        player1 = 'O';
+    }
+    else
+    {
+        player1 = 'X';
+    }
+}
+char win()
+{
+    if(numberMap[0][0] == 'X' && numberMap[1][1] == 'X' && numberMap[2][2] == 'X') // left to right diagonal 'X'
+    {
+        cout << "Player 1 Wins!" << endl;
+        return 'X';
+    }
+    else if(numberMap[0][0] == 'O' && numberMap[1][1] == 'O' && numberMap[2][2] == 'O') //left to right diagonal 'O'
+    {
+        cout << "Player 2 Wins!" << endl;
+        return 'O';
+    }
+    else if(numberMap[0][2] == 'X' && numberMap[1][1] == 'X' && numberMap[2][0] == 'X') // right to left diagonal 'X'
+    {
+        cout << "Player 1 Wins!" << endl;
+        return 'X';
+    }
+    else if(numberMap[0][2] == 'O' && numberMap[1][1] == 'O' && numberMap[2][0] == 'O') // right to left diagonal 'O'
+    {
+        cout << "Player 2 Wins!" << endl;
+        return 'O';
+    }
+    else if(numberMap[0][0] == 'X' && numberMap[0][1] == 'X' && numberMap[0][2] == 'X') // Top row 'X'
+    {
+        cout << "Player 1 Wins!" << endl;
+        return 'X';
+    }
+    else if(numberMap[0][0] == 'O' && numberMap[0][1] == 'O' && numberMap[0][2] == 'O') // Top row 'O'
+    {
+        cout << "Player 2 Wins!" << endl;
+        return 'O';
+    }
+    else if(numberMap[1][0] == 'X' && numberMap[1][1] == 'X' && numberMap[1][2] == 'X') // Middle row 'X'
+    {
+        cout << "Player 1 Wins!" << endl;
+        return 'X';
+    }else if(numberMap[1][0] == 'O' && numberMap[1][1] == 'O' && numberMap[1][2] == 'O') // Middle row 'O'
+    {
+        cout << "Player 2 Wins!" << endl;
+        return 'O';
+    }
+    else if(numberMap[2][0] == 'X' && numberMap[2][1] == 'X' && numberMap[2][2] == 'X') // Bottom row 'X'
+    {
+        cout << "Player 1 Wins!" << endl;
+        return 'X';
+    }
+    else if(numberMap[2][0] == 'O' && numberMap[2][1] == 'O' && numberMap[2][2] == 'O') // Bottom row 'O'
+    {
+        cout << "Player 2 Wins!" << endl;
+        return 'O';
+    }
+    else if(numberMap[0][0] == 'O' && numberMap[1][0] == 'O' && numberMap[2][0] == 'O') // left colounm 'O'
+    {
+        cout << "Player 2 Wins!" << endl;
+        return 'O';
+    }
+    else if(numberMap[0][0] == 'X' && numberMap[1][0] == 'X' && numberMap[2][0] == 'X') // left colounm 'X'
+    {
+        cout << "Player 1 Wins!" << endl;
+        return 'X';
+    }
+    else if(numberMap[0][1] == 'X' && numberMap[1][1] == 'X' && numberMap[3][1] == 'X') // middle colounm 'X'
+    {
+        cout << "Player 1 Wins!" << endl;
+        return 'X';
+    }
+    else if(numberMap[0][1] == 'O' && numberMap[1][1] == 'O' && numberMap[2][1] == 'O') // middle colounm 'O'
+    {
+        cout << "Player 2 Wins!" << endl;
+        return 'O';
+    }
+    else if(numberMap[0][2] == 'X' && numberMap[1][2] == 'X' && numberMap[2][2] == 'X') // right  colounm 'X'
+    {
+        cout << "Player 1 Wins!" << endl;
+        return 'X';
+    }
+    else if(numberMap[0][2] == 'O' && numberMap[1][2] == 'O' && numberMap[2][2] == 'O') // right  colounm 'O'
+    {
+        cout << "Player 2 Wins!" << endl;
+        return 'O';
+    }
+    return 'd';
+}
+int main()
+{
+    value = 0;
+    Map();
+    int choice = 1;
+    while(1)
+    {
+        value++;
+        input(choice);
+        Map();
+        playerChange();
+        if(win() == 'X')
+        {
+            break;
+        }
+        else if(win() == 'O')
+        {
+            break;
+        }
+        else if(win() == 'd' && value == 9)
+        {
+            cout << "It's a draw!" << endl;
+        }
+        win();
+    }
+    
+    return 0;
+}
