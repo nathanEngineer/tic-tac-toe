@@ -1,3 +1,3 @@
 # C-plus-plus-Games
-This game was made after the original Tic-Tac-Toe game but with a little twist
--This was coded in C++
+This is where all of my mini games will be posted
+-All games in here are coded in C++
